@@ -1,7 +1,28 @@
+import React, { useState } from "react"
+import Header from "./components/Header"
+import Docs from "./components/Docs"
+import Test from "./components/Test"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+
 export default function App() {
+  const [currentPage, setCurrentPage] = useState('docs');
+
+  const changePage = (page) => { 
+    setCurrentPage(page);
+  }
   return (
-    <h1 className="text-3xl font-bold underline bg-green-100">
-      Hello world!
-    </h1>
+    <>
+ 
+    <Header currentPage changePage={changePage} />
+   
+      {
+
+        (currentPage === 'docs') 
+        ? <Docs />
+        : <Test />
+      }
+      
+
+    </>
   )
 }
